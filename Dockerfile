@@ -2,7 +2,10 @@ FROM ghcr.io/mintopia/ubuntu:master
 MAINTAINER LanCache.Net Team <team@lancache.net>
 ARG DEBIAN_FRONTEND=noninteractive
 COPY overlay/ /
-RUN apt-get update && apt-get install -y nginx-full inotify-tools
+RUN \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62 && \
+    apt-get update && \
+    apt-get install -y nginx-full inotify-tools
 RUN \
     chmod 777 /opt/nginx/startnginx.sh && \
     rm /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default && \
